@@ -6,12 +6,15 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { lightTheme, darkTheme } from '@/themes';
+import { UIProvider } from '@/context/ui';
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<ThemeProvider theme={darkTheme}>
-			<CssBaseline />
-			<Component {...pageProps} />
-		</ThemeProvider>
+		<UIProvider sideMenuOpen={false}>
+			<ThemeProvider theme={darkTheme}>
+				<CssBaseline />
+				<Component {...pageProps} />
+			</ThemeProvider>
+		</UIProvider>
 	);
 }

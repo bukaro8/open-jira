@@ -16,7 +16,7 @@ const Layout: NextPage<Props> = ({ title = 'OpenJira', children }) => {
 			</Head>
 			<Navbar />
 			<Sidebar />
-			<Box sx={{ padding: '10px 20px' }}>{children}S</Box>
+			<Box sx={{ padding: '10px 20px' }}>{children}</Box>
 		</Box>
 	);
 };

@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
-import { UIContext, UIReducer } from '.';
+import { UIContext, UIReducer } from './';
 import { ReactNode, useReducer } from 'react';
 
 export interface UIState {
 	sideMenuOpen: boolean;
-	children: ReactNode;
+	children?: ReactNode;
 }
 const UI_INITIAL_STATE: UIState = {
 	sideMenuOpen: false,
@@ -12,8 +12,22 @@ const UI_INITIAL_STATE: UIState = {
 
 const UIProvider: NextPage<UIState> = ({ children }) => {
 	const [state, dispatch] = useReducer(UIReducer, UI_INITIAL_STATE);
+	const openSideMenu = () => {
+		dispatch({ type: 'UI - Open Sidebar' });
+	};
+	const closeSideMenu = () => {
+		dispatch({ type: 'UI - Close Sidebar' });
+	};
+
 	return (
-		<UIContext.Provider value={{ sideMenuOpen: false }}>
+		<UIContext.Provider
+			value={{
+				...state,
+				//?methods
+				openSideMenu,
+				closeSideMenu,
+			}}
+		>
 			{children}
 		</UIContext.Provider>
 	);
